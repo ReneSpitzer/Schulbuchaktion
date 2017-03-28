@@ -16,10 +16,10 @@ and open the template in the editor.
         <h:form>
         <h:panelGrid columns="2">
             <h:outputLabel for="userid" value="Username:"/>
-            <h:inputText id="userid" value="#{loginBean.user}"/>
+            <h:inputText id="userid" value="#{userBean.user}"/>
             <h:outputLabel for="pwd" value="Password"/>
-            <h:inputText id="pwd" value="#{loginBean.pwd}"/>
-            <h:commandButton value="Login" action="#{loginBean.login}"/>
+            <h:inputText id="pwd" value="#{userBean.user.passowrt}"/>
+            <h:commandButton value="Login" action="#{userBean.login}"/>
         </h:panelGrid>
         </h:form>
     </body>

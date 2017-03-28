@@ -32,6 +32,41 @@ public class User {
         this.schulbuchverantwortlicher = schulbuchverantwortlicher;
         this.verwalter = verwalter;
     }
+     public User( String bez,int id_User, String username, String passwort, boolean admin, boolean abteilungsvorstand, boolean schulbuchverantwortlicher, boolean verwalter) {
+        this.id_User = id_User;
+        this.bez = bez;
+        this.username = username;
+        this.passwort = passwort;
+        this.admin = admin;
+        this.abteilungsvorstand = abteilungsvorstand;
+        this.schulbuchverantwortlicher = schulbuchverantwortlicher;
+        this.verwalter = verwalter;
+    }
+      public User( String bez,int id_User,String passwort, boolean admin, boolean abteilungsvorstand, boolean schulbuchverantwortlicher, boolean verwalter) {
+        this.id_User = id_User;
+        this.bez = bez;
+        this.passwort = passwort;
+        this.admin = admin;
+        this.abteilungsvorstand = abteilungsvorstand;
+        this.schulbuchverantwortlicher = schulbuchverantwortlicher;
+        this.verwalter = verwalter;
+    }
+       public User(int id_User, String username, String passwort, boolean admin, boolean abteilungsvorstand, boolean schulbuchverantwortlicher, boolean verwalter) {
+        this.id_User = id_User;
+        this.username = username;
+        this.passwort = passwort;
+        this.admin = admin;
+        this.abteilungsvorstand = abteilungsvorstand;
+        this.schulbuchverantwortlicher = schulbuchverantwortlicher;
+        this.verwalter = verwalter;
+    }
+      public User(String bez,int id_User, String username, String passwort) {
+          this.bez=bez;
+        this.id_User = id_User;
+        this.username = username;
+        this.passwort = passwort;
+    }
+    
 
     public int getId_User() {
         return id_User;
