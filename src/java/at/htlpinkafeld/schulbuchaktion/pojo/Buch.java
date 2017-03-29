@@ -23,12 +23,17 @@ public class Buch {
     private String ersteller;
     private double preis;
     private String verlag;
-    private Faecher fach;
-    private Abteilungen abt;
+    private Fach fach;
+    private Abteilung abt;
     private boolean lehrerexample;
     private String buechercol;
 
-    public Buch(int id_buch, int sb_nr, String sb_titel_lang, String sb_titel_kurz, String isbn, String anmerkung, Date erstelldatum, String ersteller, double preis, String verlag, Faecher fach, Abteilungen abt, boolean lehrerexample, String buechercol) {
+    public Buch(){
+        
+    }
+    
+    
+    public Buch(int id_buch, int sb_nr, String sb_titel_lang, String sb_titel_kurz, String isbn, String anmerkung, Date erstelldatum, String ersteller, double preis, String verlag, Fach fach, Abteilung abt, boolean lehrerexample, String buechercol) {
         this.id_buch = id_buch;
         this.sb_nr = sb_nr;
         this.sb_titel_lang = sb_titel_lang;
@@ -127,19 +132,19 @@ public class Buch {
         this.verlag = verlag;
     }
 
-    public Faecher getFach() {
+    public Fach getFach() {
         return fach;
     }
 
-    public void setFach(Faecher fach) {
+    public void setFach(Fach fach) {
         this.fach = fach;
     }
 
-    public Abteilungen getAbt() {
+    public Abteilung getAbt() {
         return abt;
     }
 
-    public void setAbt(Abteilungen abt) {
+    public void setAbt(Abteilung abt) {
         this.abt = abt;
     }
 

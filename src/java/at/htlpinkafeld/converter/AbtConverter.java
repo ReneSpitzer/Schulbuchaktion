@@ -5,6 +5,7 @@
  */
 package at.htlpinkafeld.converter;
 
+import at.htlpinkafeld.schulbuchaktion.pojo.Abteilung;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -17,12 +18,23 @@ public class AbtConverter implements Converter{
 
     @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Abteilung retVal=null;
+        if(string!=null){
+            String[] strf=string.split("-");
+            retVal=new Abteilung(Integer.parseInt(strf[0]),strf[1]);
+        }
+        return retVal;
     }
 
     @Override
     public String getAsString(FacesContext fc, UIComponent uic, Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String retVal=null;
+        if(o!=null){
+            Abteilung abt=(Abteilung)o;
+            retVal=abt.getId_abteilung()+""+abt.getAbt_name();
+        }
+        return retVal;
+        
     }
     
     

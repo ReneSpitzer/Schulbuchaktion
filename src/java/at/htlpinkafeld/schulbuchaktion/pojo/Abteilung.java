@@ -11,11 +11,11 @@ import java.util.Objects;
  *
  * @author Alex
  */
-public class Abteilungen {
+public class Abteilung {
     private int id_abteilung;
     private String abt_name;
 
-    public Abteilungen(int id_abteilung, String abt_name) {
+    public Abteilung(int id_abteilung, String abt_name) {
         this.id_abteilung = id_abteilung;
         this.abt_name = abt_name;
     }
@@ -55,7 +55,7 @@ public class Abteilungen {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Abteilungen other = (Abteilungen) obj;
+        final Abteilung other = (Abteilung) obj;
         if (this.id_abteilung != other.id_abteilung) {
             return false;
         }

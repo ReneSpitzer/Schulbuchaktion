@@ -22,5 +22,9 @@
        <converter-class>at.htlpinkafeld.converter.AbtConverter</converter-class>
        
    </converter>
-   
+      <converter>
+       <converter-id>DateConverter</converter-id>
+       <converter-class>at.htlpinkafeld.converter.DateConverter</converter-class>
+       
+   </converter>
 </faces-config>

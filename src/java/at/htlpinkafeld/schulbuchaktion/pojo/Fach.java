@@ -11,12 +11,12 @@ import java.util.Objects;
  *
  * @author Alex
  */
-public class Faecher {
+public class Fach {
     private int id_Fach;
     private String fachbez;
    
 
-    public Faecher(int id_Fach, String fachbez) {
+    public Fach(int id_Fach, String fachbez) {
         this.id_Fach = id_Fach;
         this.fachbez = fachbez;
     }
@@ -58,7 +58,7 @@ public class Faecher {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Faecher other = (Faecher) obj;
+        final Fach other = (Fach) obj;
         if (this.id_Fach != other.id_Fach) {
             return false;
         }

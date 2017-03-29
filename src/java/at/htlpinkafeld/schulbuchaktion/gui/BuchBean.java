@@ -24,7 +24,7 @@ public class BuchBean {
     private Buch buch;
     
     public BuchBean(){
-       
+       buch=new Buch();
     }
 
     public List<Buch> getBlist() {
@@ -43,9 +43,9 @@ public class BuchBean {
         this.buch = buch;
     }
     
-    public Object add(Buch b){
-        this.blist.add(b);
-        return null;
+    public void add(){
+        this.blist.add(buch);
+        buch=new Buch();
     }
     /*
     public Object save(Buch b){

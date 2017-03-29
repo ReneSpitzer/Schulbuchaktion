@@ -15,10 +15,10 @@ public class Klasse {
     private int jahrgang;
     private String schueler_bez;
     private int schueler_anz;
-    private Abteilungen abt;
+    private Abteilung abt;
     private int rep_anz;
 
-    public Klasse(int jahrgang, String schueler_bez, int schueler_anz, Abteilungen abt, int rep_anz) {
+    public Klasse(int jahrgang, String schueler_bez, int schueler_anz, Abteilung abt, int rep_anz) {
         this.jahrgang = jahrgang;
         this.schueler_bez = schueler_bez;
         this.schueler_anz = schueler_anz;
@@ -50,11 +50,11 @@ public class Klasse {
         this.schueler_anz = schueler_anz;
     }
 
-    public Abteilungen getAbt() {
+    public Abteilung getAbt() {
         return abt;
     }
 
-    public void setAbt(Abteilungen abt) {
+    public void setAbt(Abteilung abt) {
         this.abt = abt;
     }
 

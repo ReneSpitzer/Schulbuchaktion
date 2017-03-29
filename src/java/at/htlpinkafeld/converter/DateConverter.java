@@ -5,7 +5,7 @@
  */
 package at.htlpinkafeld.converter;
 
-import at.htlpinkafeld.schulbuchaktion.pojo.Fach;
+import java.util.Date;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -14,26 +14,26 @@ import javax.faces.convert.Converter;
  *
  * @author rene-_000
  */
-public class FachConverter implements Converter{
+public class DateConverter implements Converter{
 
     @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
-        Fach retVal=null;
+        Date retVal= null;
         if(string!=null){
-             String[] strf=string.split("-");
-             retVal=new Fach(Integer.parseInt(strf[0]),strf[1]);
-        }  
-       return retVal;
+            String[]strf =string.split(".");
+           retVal=new Date(Integer.parseInt(strf[2]),Integer.parseInt(strf[1]),Integer.parseInt(strf[0]));
+        }
+        return retVal;
     }
 
     @Override
     public String getAsString(FacesContext fc, UIComponent uic, Object o) {
         String retVal=null;
-       if(o!=null){
-           Fach f=(Fach)o;
-           retVal=f.getId_Fach()+""+f.getFachbez();
-       }
-       return retVal;
+        if(o!=null){
+            Date d=(Date)o;
+            retVal=d.getDay()+"."+d.getMonth()+"."+d.getYear();
+        }
+        return retVal;
     }
     
 }
