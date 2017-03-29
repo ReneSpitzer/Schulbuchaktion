@@ -21,7 +21,10 @@ public class User {
     private boolean schulbuchverantwortlicher;
     private boolean verwalter;
     //Fachverantwortlicher für? int/String/Faecher
-
+    public User (){
+        
+    }
+    
     public User(int id_User, String bez, String username, String passwort, boolean admin, boolean abteilungsvorstand, boolean schulbuchverantwortlicher, boolean verwalter) {
         this.id_User = id_User;
         this.bez = bez;

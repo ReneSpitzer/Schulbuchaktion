@@ -8,14 +8,18 @@ package at.htlpinkafeld.schulbuchaktion.gui;
 import at.htlpinkafeld.schulbuchaktion.pojo.User;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
 
 /**
  *
  * @author rene-_000
  */
+@ManagedBean
+@SessionScoped
 public class UserBean {
-    private User user;
-    private String pwd;
+    private User user = new User();
    private List <User> userlist = new ArrayList();
     
     public UserBean(){
@@ -33,7 +37,7 @@ public class UserBean {
    
    public String login(){
       for(User u:userlist){
-          if(u.getId_User()==user.getId_User()&&u.getPasswort().equals(user.getPasswort())){
+          if(u.getUsername().equals(user.getUsername())&&u.getPasswort().equals(user.getPasswort())){
               return "/index.xhtml";
           }
       }
