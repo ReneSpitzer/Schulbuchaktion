@@ -12,7 +12,7 @@ import java.util.Objects;
  *
  * @author Alex
  */
-public class Buecher {
+public class Buch {
     private int id_buch;
     private int sb_nr;
     private String sb_titel_lang;
@@ -28,7 +28,7 @@ public class Buecher {
     private boolean lehrerexample;
     private String buechercol;
 
-    public Buecher(int id_buch, int sb_nr, String sb_titel_lang, String sb_titel_kurz, String isbn, String anmerkung, Date erstelldatum, String ersteller, double preis, String verlag, Faecher fach, Abteilungen abt, boolean lehrerexample, String buechercol) {
+    public Buch(int id_buch, int sb_nr, String sb_titel_lang, String sb_titel_kurz, String isbn, String anmerkung, Date erstelldatum, String ersteller, double preis, String verlag, Faecher fach, Abteilungen abt, boolean lehrerexample, String buechercol) {
         this.id_buch = id_buch;
         this.sb_nr = sb_nr;
         this.sb_titel_lang = sb_titel_lang;
@@ -190,7 +190,7 @@ public class Buecher {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Buecher other = (Buecher) obj;
+        final Buch other = (Buch) obj;
 
         if (this.id_buch != other.id_buch) {
             return false;

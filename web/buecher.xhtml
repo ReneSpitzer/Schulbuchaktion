@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Buecher</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="2">
+            <h:outputLabel for="Bid" value="BuchId"/>
+                <h:inputText id="Bid" value="#{buchBean.buch.id_buch}"/>
+            <h:outputLabel for="SbNr" value="Schubluchnummer"/>
+                <h:inputText id="pwd" value="#{buchBean.buch.sb_nr}"/>  
+            <h:outputLabel for="SbTl" value="Schulbuchtitel-lang"/>
+                <h:inputText id="SbTl" value="#{buchBean.buch.sb_titel_lang}"/>   
+            <h:outputLabel for="SbTk" value="Schulbuchtitel-kurz"/>
+                <h:inputText id="SbTk" value="#{buchBean.buch.sb_titel_kurz}"/>
+            <h:outputLabel for="Isbn" value="ISBN"/>
+                <h:inputText id="Isbn" value="#{buchBean.buch.isbn}"/>
+            <h:outputLabel for="Anm" value="Anmerkung"/>
+                <h:inputText id="Anm" value="#{buchBean.buch.anmerkung}"/>
+            <h:outputLabel for="ErstlDat" value="Erstelldatum"/>
+                <h:inputText id="ErstlDat" value="#{buchBean.buch.erstelldatum}"/>  
+            <h:outputLabel for="erst" value="Ersteller"/>
+                <h:inputText id="erst" value="#{buchBean.buch.ersteller}"/>
+            <h:outputLabel for="Pr" value="Preis"/>
+            <h:inputText id="Pr" value="#{buchBean.buch.preis}"/>   
+            <h:outputLabel for="verl" value="Verlag"/>
+            <h:inputText id="verl" value="#{buchBean.buch.verlag}"/>
+            <h:outputLabel for="fach" value="Fach"/>
+            <h:inputText id="fach" value="#{buchBean.buch.fach}" converter="FachConverter"/>
+              <h:outputLabel for="abt" value="Abteilung"/>
+              <h:inputText id="abt" value="#{buchBean.buch.abt}" converter="AbtConverter"/>
+              <h:outputLabel for="lehrerex" value="Lehrerexample" />
+              <h:selectBooleanCheckbox value="#{buchBean.buch.lehrerexample}" immediate="true" onclick="submit()" valueChangeListener="#{buchBean.assign}"/>
+            <h:outputLabel for="bcl" value="BuecherCol"/>
+            <h:inputText id="bcl" value="#{buchBean.buch.buechercol}"/>
+            <h:commandButton value="Hinzufügen" action="#{buchBean.add(buchbean.buch)}"/>
+           
+        
+                
+                
+                
+                
+            </h:panelGrid>
+            
+            
+            
+            
+            
+            
+        </h:form>
+    </h:body>
+</html>
