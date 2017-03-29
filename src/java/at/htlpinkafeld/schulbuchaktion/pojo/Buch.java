@@ -19,7 +19,7 @@ public class Buch {
     private String sb_titel_kurz;
     private String isbn;
     private String anmerkung;
-    private Date erstelldatum;
+    private String erstelldatum;
     private String ersteller;
     private double preis;
     private String verlag;
@@ -33,7 +33,7 @@ public class Buch {
     }
     
     
-    public Buch(int id_buch, int sb_nr, String sb_titel_lang, String sb_titel_kurz, String isbn, String anmerkung, Date erstelldatum, String ersteller, double preis, String verlag, Fach fach, Abteilung abt, boolean lehrerexample, String buechercol) {
+    public Buch(int id_buch, int sb_nr, String sb_titel_lang, String sb_titel_kurz, String isbn, String anmerkung, String erstelldatum, String ersteller, double preis, String verlag, Fach fach, Abteilung abt, boolean lehrerexample, String buechercol) {
         this.id_buch = id_buch;
         this.sb_nr = sb_nr;
         this.sb_titel_lang = sb_titel_lang;
@@ -100,11 +100,11 @@ public class Buch {
         this.anmerkung = anmerkung;
     }
 
-    public Date getErstelldatum() {
+    public String getErstelldatum() {
         return erstelldatum;
     }
 
-    public void setErstelldatum(Date erstelldatum) {
+    public void setErstelldatum(String erstelldatum) {
         this.erstelldatum = erstelldatum;
     }
 

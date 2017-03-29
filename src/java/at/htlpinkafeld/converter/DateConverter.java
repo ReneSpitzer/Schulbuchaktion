@@ -5,10 +5,11 @@
  */
 package at.htlpinkafeld.converter;
 
-import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import sun.util.calendar.LocalGregorianCalendar.Date;
 
 /**
  *
@@ -18,10 +19,10 @@ public class DateConverter implements Converter{
 
     @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
-        Date retVal= null;
+        GregorianCalendar retVal= null;
         if(string!=null){
             String[]strf =string.split(".");
-           retVal=new Date(Integer.parseInt(strf[2]),Integer.parseInt(strf[1]),Integer.parseInt(strf[0]));
+           retVal=new GregorianCalendar(Integer.parseInt(strf[2]),Integer.parseInt(strf[1]),Integer.parseInt(strf[0]));
         }
         return retVal;
     }
@@ -30,10 +31,10 @@ public class DateConverter implements Converter{
     public String getAsString(FacesContext fc, UIComponent uic, Object o) {
         String retVal=null;
         if(o!=null){
-            Date d=(Date)o;
-            retVal=d.getDay()+"."+d.getMonth()+"."+d.getYear();
+            GregorianCalendar d=(GregorianCalendar)o;
+           // retVal=d.get+"."+d.getMonth()+"."+d.getYear();
         }
         return retVal;
     }
-    
+   
 }

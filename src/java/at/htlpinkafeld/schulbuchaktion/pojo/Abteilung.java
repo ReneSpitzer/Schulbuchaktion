@@ -67,7 +67,7 @@ public class Abteilung {
 
     @Override
     public String toString() {
-        return "Abteilungen{" + "id_abteilung=" + id_abteilung + ", abt_name=" + abt_name + '}';
+        return   id_abteilung + " " + abt_name;
     }
     
     

@@ -31,7 +31,7 @@ public class FachConverter implements Converter{
         String retVal=null;
        if(o!=null){
            Fach f=(Fach)o;
-           retVal=f.getId_Fach()+""+f.getFachbez();
+           retVal=f.getId_Fach()+" "+f.getFachbez();
        }
        return retVal;
     }

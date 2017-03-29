@@ -23,7 +23,7 @@
                 <h:outputLabel for="Anm" value="Anmerkung"/>
                 <h:inputText id="Anm" value="#{buchBean.buch.anmerkung}"/>
                 <h:outputLabel for="ErstlDat" value="Erstelldatum"/>
-                <h:inputText id="ErstlDat" value="#{buchBean.buch.erstelldatum}" converter="DateConverter"/>  
+                <h:inputText id="ErstlDat" value="#{buchBean.buch.erstelldatum}"/>  
                 <h:outputLabel for="erst" value="Ersteller"/>
                 <h:inputText id="erst" value="#{buchBean.buch.ersteller}"/>
                 <h:outputLabel for="Pr" value="Preis"/>
@@ -38,7 +38,9 @@
                 <h:selectBooleanCheckbox id="lehrerex" value="#{buchBean.buch.lehrerexample}"/> 
                 <h:outputLabel for="bcl" value="BuecherCol"/>
                 <h:inputText id="bcl" value="#{buchBean.buch.buechercol}"/>
-                <h:commandButton value="Hinzufügen" action="#{buchBean.add()}"/>
+                <f:facet name="footer">
+                    <h:commandButton value="Hinzufügen" action="#{buchBean.add}"/>
+                </f:facet>
             </h:panelGrid>
 
 
@@ -88,7 +90,7 @@
                     <f:facet name="header">
                         <h:outputText value="Erstelldatum"/>
                     </f:facet>
-                    <h:outputText value="#{buch.erstelldatum}" converter="DateConverter"/>
+                    <h:outputText value="#{buch.erstelldatum}" />
                 </h:column>  <h:column>
                     <f:facet name="header">
                         <h:outputText value="Ersteller"/>

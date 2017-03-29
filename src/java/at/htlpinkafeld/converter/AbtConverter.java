@@ -31,7 +31,7 @@ public class AbtConverter implements Converter{
         String retVal=null;
         if(o!=null){
             Abteilung abt=(Abteilung)o;
-            retVal=abt.getId_abteilung()+""+abt.getAbt_name();
+            retVal=abt.getId_abteilung()+" "+abt.getAbt_name();
         }
         return retVal;
         
