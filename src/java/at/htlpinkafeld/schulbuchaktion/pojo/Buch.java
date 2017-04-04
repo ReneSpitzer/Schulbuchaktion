@@ -137,19 +137,19 @@ public class Buch {
         this.verlag = verlag;
     }
 
-    public Fach getFach() {
+    public int getFach() {
         return fach;
     }
 
-    public void setFach(Fach fach) {
+    public void setFach(int fach) {
         this.fach = fach;
     }
 
-    public Abteilung getAbt() {
+    public int getAbt() {
         return abt;
     }
 
-    public void setAbt(Abteilung abt) {
+    public void setAbt(int abt) {
         this.abt = abt;
     }
 
