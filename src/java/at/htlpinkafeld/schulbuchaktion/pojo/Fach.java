@@ -5,6 +5,7 @@
  */
 package at.htlpinkafeld.schulbuchaktion.pojo;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -14,11 +15,16 @@ import java.util.Objects;
 public class Fach {
     private int id_Fach;
     private String fachbez;
+    
+    private Indizes idx;
    
 
     public Fach(int id_Fach, String fachbez) {
         this.id_Fach = id_Fach;
         this.fachbez = fachbez;
+        
+        idx= new Indizes();
+        idx.addIndex("ID_FACH", id_Fach);
     }
 
     public int getId_Fach() {
@@ -36,7 +42,10 @@ public class Fach {
     public void setFachbez(String fachbez) {
         this.fachbez = fachbez;
     }
-
+    
+    public Indizes getIndizes(){
+        return idx;
+    }
 
 
     @Override
