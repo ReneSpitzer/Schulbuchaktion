@@ -27,4 +27,11 @@ public class Indizes {
     public Map getIndizesMap(){
         return new HashMap(indizes);
     }
+    
+    public void replaceValue(String key, Object value)
+    {
+        if(indizes.containsKey(key)){
+            indizes.replace(key, value);s
+        }
+    }
 }
