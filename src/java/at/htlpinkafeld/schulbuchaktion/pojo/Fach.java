@@ -15,7 +15,8 @@ import java.util.Objects;
 public class Fach {
     private int id_Fach;
     private String fachbez;
-    
+       
+    public static final String[] INDEX_KEYS={"ID_FACH"};
     private Indizes idx;
    
 
@@ -24,7 +25,7 @@ public class Fach {
         this.fachbez = fachbez;
         
         idx= new Indizes();
-        idx.addIndex("ID_FACH", id_Fach);
+        idx.addIndex(this.INDEX_KEYS[0], id_Fach);
     }
 
     public int getId_Fach() {
