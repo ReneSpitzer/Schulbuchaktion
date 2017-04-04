@@ -161,12 +161,12 @@ public class Buch {
         this.lehrerexample = lehrerexample;
     }
 
-    public boolean getBuechercol() {
+    public boolean isAktiv() {
         return status_aktiv;
     }
 
-    public void setBuechercol(boolean buechercol) {
-        this.status_aktiv = buechercol;
+    public void setAktiv(boolean status) {
+        this.status_aktiv = status;
     }
 
     @Override
