@@ -31,7 +31,7 @@ public class Indizes {
     public void replaceValue(String key, Object value)
     {
         if(indizes.containsKey(key)){
-            indizes.replace(key, value);s
+            indizes.replace(key, value);
         }
     }
 }
