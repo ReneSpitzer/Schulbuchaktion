@@ -23,8 +23,8 @@ public class Buch {
     private String ersteller;
     private double preis;
     private int verlag;
-    private Fach fach;
-    private Abteilung abt;
+    private int fach;
+    private int abt;
     private boolean lehrerexample;
     private boolean status_aktiv;
     
@@ -35,7 +35,7 @@ public class Buch {
     }
     
     
-    public Buch(int id_buch, int sb_nr, String sb_titel_lang, String sb_titel_kurz, int isbn, String anmerkung, String erstelldatum, String ersteller, double preis, int verlag, Fach fach, Abteilung abt, boolean lehrerexample, boolean status_aktiv) {
+    public Buch(int id_buch, int sb_nr, String sb_titel_lang, String sb_titel_kurz, int isbn, String anmerkung, String erstelldatum, String ersteller, double preis, int verlag, int fach, int abt, boolean lehrerexample, boolean status_aktiv) {
         this.id_buch = id_buch;
         this.sb_nr = sb_nr;
         this.sb_titel_lang = sb_titel_lang;
