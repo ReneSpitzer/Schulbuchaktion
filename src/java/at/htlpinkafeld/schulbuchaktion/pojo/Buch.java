@@ -29,6 +29,8 @@ public class Buch {
     private boolean lehrerexample;
     private boolean status_aktiv;
     
+    public static final String[] INDEX_KEYS={"ID_BUCH"};
+    
     private Indizes idx;
 
     public Buch(){
@@ -53,7 +55,7 @@ public class Buch {
         this.status_aktiv = status_aktiv;
         
          idx=new Indizes();
-        idx.addIndex("ID_BUCH", id_buch); //wegen dieser Variable muss ein eine jede klasse Immutable sein
+        idx.addIndex(this.INDEX_KEYS[0], id_buch); //wegen dieser Variable muss ein eine jede klasse Immutable sein
     }
 
     public int getId_buch() {
