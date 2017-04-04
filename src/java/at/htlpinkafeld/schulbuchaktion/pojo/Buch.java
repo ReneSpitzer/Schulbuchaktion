@@ -25,6 +25,7 @@ public class Buch {
     private int verlag;
     private int fach;
     private int abt;
+    private String jahrgang;
     private boolean lehrerexample;
     private boolean status_aktiv;
     
@@ -33,9 +34,8 @@ public class Buch {
     public Buch(){
         
     }
-    
-    
-    public Buch(int id_buch, int sb_nr, String sb_titel_lang, String sb_titel_kurz, int isbn, String anmerkung, String erstelldatum, String ersteller, double preis, int verlag, int fach, int abt, boolean lehrerexample, boolean status_aktiv) {
+
+    public Buch(int id_buch, int sb_nr, String sb_titel_lang, String sb_titel_kurz, int isbn, String anmerkung, String erstelldatum, String ersteller, double preis, int verlag, int fach, int abt, String jahrgang, boolean lehrerexample, boolean status_aktiv) {
         this.id_buch = id_buch;
         this.sb_nr = sb_nr;
         this.sb_titel_lang = sb_titel_lang;
@@ -48,16 +48,15 @@ public class Buch {
         this.verlag = verlag;
         this.fach = fach;
         this.abt = abt;
+        this.jahrgang = jahrgang;
         this.lehrerexample = lehrerexample;
         this.status_aktiv = status_aktiv;
         
-        idx=new Indizes();
+         idx=new Indizes();
         idx.addIndex("ID_BUCH", id_buch); //wegen dieser Variable muss ein eine jede klasse Immutable sein
     }
 
-
-
-    public int getId_Buch() {
+    public int getId_buch() {
         return id_buch;
     }
 
@@ -153,6 +152,14 @@ public class Buch {
         this.abt = abt;
     }
 
+    public String getJahrgang() {
+        return jahrgang;
+    }
+
+    public void setJahrgang(String jahrgang) {
+        this.jahrgang = jahrgang;
+    }
+
     public boolean isLehrerexample() {
         return lehrerexample;
     }
@@ -161,31 +168,37 @@ public class Buch {
         this.lehrerexample = lehrerexample;
     }
 
-    public boolean isAktiv() {
+    public boolean isStatus_aktiv() {
         return status_aktiv;
     }
 
-    public void setAktiv(boolean status) {
-        this.status_aktiv = status;
+    public void setStatus_aktiv(boolean status_aktiv) {
+        this.status_aktiv = status_aktiv;
+    }
+
+    public Indizes getIdx() {
+        return idx;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 7;
         hash = 41 * hash + this.id_buch;
         hash = 41 * hash + this.sb_nr;
         hash = 41 * hash + Objects.hashCode(this.sb_titel_lang);
         hash = 41 * hash + Objects.hashCode(this.sb_titel_kurz);
-        hash = 41 * hash + Objects.hashCode(this.isbn);
+        hash = 41 * hash + this.isbn;
         hash = 41 * hash + Objects.hashCode(this.anmerkung);
         hash = 41 * hash + Objects.hashCode(this.erstelldatum);
         hash = 41 * hash + Objects.hashCode(this.ersteller);
         hash = 41 * hash + (int) (Double.doubleToLongBits(this.preis) ^ (Double.doubleToLongBits(this.preis) >>> 32));
-        hash = 41 * hash + Objects.hashCode(this.verlag);
-        hash = 41 * hash + Objects.hashCode(this.fach);
-        hash = 41 * hash + Objects.hashCode(this.abt);
+        hash = 41 * hash + this.verlag;
+        hash = 41 * hash + this.fach;
+        hash = 41 * hash + this.abt;
+        hash = 41 * hash + Objects.hashCode(this.jahrgang);
         hash = 41 * hash + (this.lehrerexample ? 1 : 0);
-        hash = 41 * hash + Objects.hashCode(this.status_aktiv);
+        hash = 41 * hash + (this.status_aktiv ? 1 : 0);
+        hash = 41 * hash + Objects.hashCode(this.idx);
         return hash;
     }
 
@@ -201,17 +214,31 @@ public class Buch {
             return false;
         }
         final Buch other = (Buch) obj;
-
         if (this.id_buch != other.id_buch) {
             return false;
         }
         if (this.sb_nr != other.sb_nr) {
             return false;
         }
+        if (this.isbn != other.isbn) {
+            return false;
+        }
         if (Double.doubleToLongBits(this.preis) != Double.doubleToLongBits(other.preis)) {
             return false;
         }
+        if (this.verlag != other.verlag) {
+            return false;
+        }
+        if (this.fach != other.fach) {
+            return false;
+        }
+        if (this.abt != other.abt) {
+            return false;
+        }
         if (this.lehrerexample != other.lehrerexample) {
+            return false;
+        }
+        if (this.status_aktiv != other.status_aktiv) {
             return false;
         }
         if (!Objects.equals(this.sb_titel_lang, other.sb_titel_lang)) {
@@ -220,28 +247,19 @@ public class Buch {
         if (!Objects.equals(this.sb_titel_kurz, other.sb_titel_kurz)) {
             return false;
         }
-        if (!Objects.equals(this.isbn, other.isbn)) {
-            return false;
-        }
         if (!Objects.equals(this.anmerkung, other.anmerkung)) {
-            return false;
-        }
-        if (!Objects.equals(this.ersteller, other.ersteller)) {
-            return false;
-        }
-        if (!Objects.equals(this.verlag, other.verlag)) {
-            return false;
-        }
-        if (!Objects.equals(this.status_aktiv, other.status_aktiv)) {
             return false;
         }
         if (!Objects.equals(this.erstelldatum, other.erstelldatum)) {
             return false;
         }
-        if (!Objects.equals(this.fach, other.fach)) {
+        if (!Objects.equals(this.ersteller, other.ersteller)) {
             return false;
         }
-        if (!Objects.equals(this.abt, other.abt)) {
+        if (!Objects.equals(this.jahrgang, other.jahrgang)) {
+            return false;
+        }
+        if (!Objects.equals(this.idx, other.idx)) {
             return false;
         }
         return true;
@@ -249,9 +267,9 @@ public class Buch {
 
     @Override
     public String toString() {
-        return "Buecher{" + ", id_buch=" + id_buch + ", sb_nr=" + sb_nr + ", sb_titel_lang=" + sb_titel_lang + ", sb_titel_kurz=" + sb_titel_kurz + ", isbn=" + isbn + ", anmerkung=" + anmerkung + ", erstelldatum=" + erstelldatum + ", ersteller=" + ersteller + ", preis=" + preis + ", verlag=" + verlag + ", "
-                + "fach=" + fach + ", abt=" + abt + ", lehrerexample=" + lehrerexample + ", buechercol=" + status_aktiv + '}';
+        return "Buch{" + "id_buch=" + id_buch + ", sb_nr=" + sb_nr + ", sb_titel_lang=" + sb_titel_lang + ", sb_titel_kurz=" + sb_titel_kurz + ", isbn=" + isbn + ", anmerkung=" + anmerkung + ", erstelldatum=" + erstelldatum + ", ersteller=" + ersteller + ", preis=" + preis + ", verlag=" + verlag + ", fach=" + fach + ", abt=" + abt + ", jahrgang=" + jahrgang + ", lehrerexample=" + lehrerexample + ", status_aktiv=" + status_aktiv + '}';
     }
+    
     
     
 }
