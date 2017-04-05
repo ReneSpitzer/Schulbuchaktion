@@ -32,6 +32,7 @@ public class User {
         this.schulbuchverantwortlicher = schulbuchverantwortlicher;
         this.verwalter = verwalter;
     }
+    
 
     public int getId_User() {
         return id_User;
