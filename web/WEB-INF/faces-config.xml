@@ -4,4 +4,27 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
+   <navigation-rule>
+       <from-view-id>/index.xhtml</from-view-id>
+       <navigation-case>
+           <from-outcome>blist</from-outcome>
+           <to-view-id>/buecher.xhtml></to-view-id>  
+       </navigation-case>
+   </navigation-rule> 
+    
+   <converter>
+       <converter-id>FachConverter</converter-id>
+       <converter-class>at.htlpinkafeld.converter.FachConverter</converter-class>
+       
+   </converter>
+   <converter>
+       <converter-id>AbtConverter</converter-id>
+       <converter-class>at.htlpinkafeld.converter.AbtConverter</converter-class>
+       
+   </converter>
+      <converter>
+       <converter-id>DateConverter</converter-id>
+       <converter-class>at.htlpinkafeld.converter.DateConverter</converter-class>
+       
+   </converter>
 </faces-config>

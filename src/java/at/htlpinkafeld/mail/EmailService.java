@@ -6,6 +6,7 @@
 package at.htlpinkafeld.mail;
 
 
+import at.htlpinkafeld.schulbuchaktion.pojo.User;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,15 +17,18 @@ import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
+import javax.mail.Service;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import org.apache.catalina.Host;
 
 /**
  *
  * @author Alex
  */
+
 public class EmailService {
 
     private static DateTimeFormatter dateTimeFormatter;
@@ -34,7 +38,7 @@ public class EmailService {
 
     static {
         dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
-        dutydao = new DutyDaoImpl();
+        dutydao = new DutyDao();
     }
 
     private static void sendEmail(String subject, String body, User from, List<User> to) {
@@ -92,7 +96,7 @@ public class EmailService {
         }
     }
 
-    public static void sendNotificationMailHost(String hostname, Host.Hoststatus oldstatus, Host.Hoststatus newstatus, String pluginOutput) {
+    public static void sendNotificationMailHost(String hostname, Host oldstatus, Host newstatus, String pluginOutput) {
         String subject;
         String body;
         List<Duty> dList = dutydao.getDutiesInTime(LocalDateTime.now());
@@ -108,7 +112,7 @@ public class EmailService {
         sendEmail(subject, body, null, uList);
     }
 
-    public static void sendNotificationMailService(String servicename, Service.Servicestatus oldstatus, Service.Servicestatus newstatus, String pluginOutput) {
+    public static void sendNotificationMailService(String servicename, Service oldstatus, Service newstatus, String pluginOutput) {
         String subject;
         String body;
         List<Duty> dList = dutydao.getDutiesInTime(LocalDateTime.now());

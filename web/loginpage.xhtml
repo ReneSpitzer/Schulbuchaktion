@@ -9,17 +9,17 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
-        <title>TODO supply a title</title>
+        <title>Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
        <body>
         <h:form>
         <h:panelGrid columns="2">
             <h:outputLabel for="userid" value="Username:"/>
-            <h:inputText id="userid" value="#{loginBean.user}"/>
+            <h:inputText id="userid" value="#{userBean.user.username}"/>
             <h:outputLabel for="pwd" value="Password"/>
-            <h:inputText id="pwd" value="#{loginBean.pwd}"/>
-            <h:commandButton value="Login" action="#{loginBean.login}"/>
+            <h:inputText id="pwd" value="#{userBean.user.passwort}"/>          
+            <h:commandButton value="Login" action="#{userBean.login}"/>
         </h:panelGrid>
         </h:form>
     </body>
