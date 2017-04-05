@@ -35,6 +35,10 @@ public class User {
         this.email = email;
     }
 
+    public User() {
+        this(0,"","","",false,false,false,false,"");
+    }
+
     public String getEmail() {
         return email;
     }
