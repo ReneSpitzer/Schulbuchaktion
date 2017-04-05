@@ -5,59 +5,40 @@
  */
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.*;
+import javax.naming.*;
+import javax.sql.DataSource;
 
-/**
- *
- * @author maue
- */
 public class ConnectionManager {
+   private static final String DATASOURCE = "jdbc/SchulbuchAktionDB";
+   private static ConnectionManager connMgrInst = null;
+   private DataSource ds = null;
 
-    private static final String DBDRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
-    private static final String PROTOCOL = "jdbc:derby:";
-    private static final String URLDATASOURCE = "..\\SchulbuchAktion\\company";
-    private static final String URLPOSTFIX = ";create=true";
+   public static synchronized ConnectionManager getInst() {
+      if (connMgrInst == null) 
+        	connMgrInst = new ConnectionManager();
+      
+      return connMgrInst;
+   }
+   private ConnectionManager() {
+      try {
+         Context ctx;
+         ctx = new javax.naming.InitialContext();
+         ds = (DataSource) ctx.lookup("java:comp/env/" + DATASOURCE);
+      } catch (NamingException ex) {
+        	//log.error("Error lookup:"java:comp/env/"+DATASOURCE, ex);
+      }
+   }
 
-    private static volatile ConnectionManager instance = null;
+   public Connection getConn() {
+      Connection retVal = null;
+      try {
+         retVal = ds.getConnection();  //get a connection from the pool
+      } catch (SQLException ex) {
+         //log.error("Error while connecting to database: "+ DATASOURCE, ex);
+      }
 
-    private Connection connection = null;
+      return retVal;
+   }
+} 
 
-    public static ConnectionManager getInst() {
-        if (instance == null) {
-            instance = new ConnectionManager();
-        }
-        return instance;
-    }
-
-    private ConnectionManager() {
-        try {
-            Class.forName(DBDRIVER);
-            connection = DriverManager.getConnection(PROTOCOL + URLDATASOURCE + URLPOSTFIX, "db", "");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public Connection getConnection() {
-        return this.connection;
-    }
-
-    public static void closeConnection() {
-        //close the connection only if there is a instance
-        //--> closeConnection() can always be called. 
-        //(e.g. if non JDBC-Dao's are used  --> ConnectionManager is not instantiated)
-        if (instance != null) {
-            try {
-                instance.connection.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-}
