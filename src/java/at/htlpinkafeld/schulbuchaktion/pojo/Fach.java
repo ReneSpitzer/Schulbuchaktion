@@ -48,12 +48,12 @@ public class Fach {
         return idx;
     }
 
-
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + this.id_Fach;
-        hash = 23 * hash + Objects.hashCode(this.fachbez);
+        hash = 41 * hash + this.id_Fach;
+        hash = 41 * hash + Objects.hashCode(this.fachbez);
+        hash = 41 * hash + Objects.hashCode(this.idx);
         return hash;
     }
 
@@ -75,14 +75,18 @@ public class Fach {
         if (!Objects.equals(this.fachbez, other.fachbez)) {
             return false;
         }
-
+        if (!Objects.equals(this.idx, other.idx)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Faecher{" + "id_Fach=" + id_Fach + ", fachbez=" + fachbez + ", fachverantwortlicher=" + '}';
+        return "Fach{" + "id_Fach=" + id_Fach + ", fachbez=" + fachbez + ", idx=" + idx + '}';
     }
+
+
     
     
 }
