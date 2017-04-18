@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form id="regForm">
+            <h:panelGrid id="regGrid" columns ="2"> 
+                <f:facet name="header">
+                    <h:outputText value="Registration"/>
+                </f:facet> 
+                <h:outputLabel for="inpSBNR" value="SBNr" />
+                <h:inputText id="inpSBNR" value="#{fachverantwortlicherBean.SBNr}" required="true"/> 
+                <h:commandButton value="Add" action="#{fachverantwortlicherBean.suchen()}"/>
+           </h:panelGrid> 
+            
+            <h:dataTable var="buch" value="#{fachverantwortlicherBean.buchListeFachv}" cellspacing="5">
+                <f:facet name="header">
+                    <h:outputText value="PupilList"/>
+                </f:facet>
+                
+                <h:column>
+                    <f:facet name="header">
+                         <h:outputText value="SBNr"/>
+                    </f:facet>
+                    <h:outputText value="#{buch.sb_nr}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                         <h:outputText value="Buch Name"/>
+                    </f:facet>
+                    <h:outputText value="#{buch.sb_titel_lang}"/>
+                </h:column>
+                <h:column>
+                       <h:commandLink value="remove" action="#{fachverantwortlicherBean.removeBuch(Buch)}"/>
+                </h:column>
+                                              
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
