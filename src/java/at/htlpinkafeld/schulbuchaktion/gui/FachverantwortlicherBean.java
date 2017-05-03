@@ -25,6 +25,7 @@ public class FachverantwortlicherBean {
     public FachverantwortlicherBean(){
         buchListeFachv = new ArrayList<>();
         buchListeKompl = new ArrayList<>();
+            
         
     }
     
