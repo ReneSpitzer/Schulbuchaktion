@@ -57,6 +57,10 @@ public class Buch {
          idx=new Indizes();
         idx.addIndex(this.INDEX_KEYS[0], id_buch); //wegen dieser Variable muss ein eine jede klasse Immutable sein
     }
+    
+    public Buch(Buch a){
+        this(a.id_buch,a.sb_nr,a.sb_titel_lang, a.sb_titel_kurz, a.isbn, a.anmerkung, a.erstelldatum, a.ersteller, a.preis, a.verlag, a.fach, a.abt, a.jahrgang, a.lehrerexample, a.status_aktiv);
+    }
 
     public int getId_buch() {
         return id_buch;

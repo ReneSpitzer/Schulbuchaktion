@@ -33,8 +33,15 @@ public class FachverantwortlicherBean {
         buchListeFachv.add(b);
     }
     
+    
     public void suchen(){
         Buch b=new Buch();
+        
+        for(Buch help:buchListeKompl){
+            if(help.getSb_nr()==SBNr){
+                b=new Buch(help);
+            }
+        }
         
         hinzufuegen(b);
     }
