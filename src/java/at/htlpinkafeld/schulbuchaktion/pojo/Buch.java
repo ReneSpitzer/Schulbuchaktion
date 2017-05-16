@@ -6,13 +6,15 @@
 package at.htlpinkafeld.schulbuchaktion.pojo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
  *
  * @author Alex
  */
-public class Buch {
+public class Buch implements Identifiable{
     private int id_buch;
     private int sb_nr;
     private String sb_titel_lang;
@@ -23,21 +25,16 @@ public class Buch {
     private String ersteller;
     private double preis;
     private int verlag;
-    private int fach;
-    private int abt;
+    private Fach fach;
+    private Abteilung abt;
     private String jahrgang;
     private boolean lehrerexample;
     private boolean status_aktiv;
     
-    public static final String[] INDEX_KEYS={"ID_BUCH"};
+    public static List idxNames;
+
     
-    private Indizes idx;
-
-    public Buch(){
-        
-    }
-
-    public Buch(int id_buch, int sb_nr, String sb_titel_lang, String sb_titel_kurz, int isbn, String anmerkung, Date erstelldatum, String ersteller, double preis, int verlag, int fach, int abt, String jahrgang, boolean lehrerexample, boolean status_aktiv) {
+    public Buch(int id_buch, int sb_nr, String sb_titel_lang, String sb_titel_kurz, int isbn, String anmerkung, Date erstelldatum, String ersteller, double preis, int verlag, Fach fach, Abteilung abt, String jahrgang, boolean lehrerexample, boolean status_aktiv){
         this.id_buch = id_buch;
         this.sb_nr = sb_nr;
         this.sb_titel_lang = sb_titel_lang;
@@ -54,21 +51,44 @@ public class Buch {
         this.lehrerexample = lehrerexample;
         this.status_aktiv = status_aktiv;
         
-         idx=new Indizes();
-        idx.addIndex(this.INDEX_KEYS[0], id_buch); //wegen dieser Variable muss ein eine jede klasse Immutable sein
+        if(idxNames==null){
+            idxNames=new ArrayList();
+            idxNames.add("ID_BUCH");
+        }
     }
-    
-    public Buch(Buch a){
-        this(a.id_buch,a.sb_nr,a.sb_titel_lang, a.sb_titel_kurz, a.isbn, a.anmerkung, a.erstelldatum, a.ersteller, a.preis, a.verlag, a.fach, a.abt, a.jahrgang, a.lehrerexample, a.status_aktiv);
+    public Buch(){
+        
+    }
+     public Buch(Buch b){
+        this.id_buch = b.id_buch;
+        this.sb_nr = b.sb_nr;
+        this.sb_titel_lang = b.sb_titel_lang;
+        this.sb_titel_kurz = b.sb_titel_kurz;
+        this.isbn = b.isbn;
+        this.anmerkung = b.anmerkung;
+        this.erstelldatum = b.erstelldatum;
+        this.ersteller = b.ersteller;
+        this.preis = b.preis;
+        this.verlag = b.verlag;
+        this.fach = b.fach;
+        this.abt = b.abt;
+        this.jahrgang = b.jahrgang;
+        this.lehrerexample = b.lehrerexample;
+        this.status_aktiv = b.status_aktiv;
+
     }
 
+    public Buch(int aInt) {
+        
+    }
+    
+  
     public int getId_buch() {
         return id_buch;
     }
 
     public void setId_buch(int id_buch) {
         this.id_buch = id_buch;
-        idx.replaceValue("ID_BUCH", id_buch);
     }
 
     public int getSb_nr() {
@@ -143,21 +163,24 @@ public class Buch {
         this.verlag = verlag;
     }
 
-    public int getFach() {
+    public Fach getFach() {
         return fach;
     }
 
-    public void setFach(int fach) {
+    public void setFach(Fach fach) {
         this.fach = fach;
     }
 
-    public int getAbt() {
+    public Abteilung getAbt() {
         return abt;
     }
 
-    public void setAbt(int abt) {
+    public void setAbt(Abteilung abt) {
         this.abt = abt;
     }
+
+  
+
 
     public String getJahrgang() {
         return jahrgang;
@@ -183,8 +206,8 @@ public class Buch {
         this.status_aktiv = status_aktiv;
     }
 
-    public Indizes getIdx() {
-        return idx;
+    public List getIdxNames() {
+        return idxNames;
     }
 
     @Override
@@ -200,12 +223,11 @@ public class Buch {
         hash = 41 * hash + Objects.hashCode(this.ersteller);
         hash = 41 * hash + (int) (Double.doubleToLongBits(this.preis) ^ (Double.doubleToLongBits(this.preis) >>> 32));
         hash = 41 * hash + this.verlag;
-        hash = 41 * hash + this.fach;
-        hash = 41 * hash + this.abt;
+     
         hash = 41 * hash + Objects.hashCode(this.jahrgang);
         hash = 41 * hash + (this.lehrerexample ? 1 : 0);
         hash = 41 * hash + (this.status_aktiv ? 1 : 0);
-        hash = 41 * hash + Objects.hashCode(this.idx);
+        hash = 41 * hash + Objects.hashCode(this.idxNames);
         return hash;
     }
 
@@ -266,7 +288,7 @@ public class Buch {
         if (!Objects.equals(this.jahrgang, other.jahrgang)) {
             return false;
         }
-        if (!Objects.equals(this.idx, other.idx)) {
+        if (!Objects.equals(this.idxNames, other.idxNames)) {
             return false;
         }
         return true;
@@ -276,7 +298,28 @@ public class Buch {
     public String toString() {
         return "Buch{" + "id_buch=" + id_buch + ", sb_nr=" + sb_nr + ", sb_titel_lang=" + sb_titel_lang + ", sb_titel_kurz=" + sb_titel_kurz + ", isbn=" + isbn + ", anmerkung=" + anmerkung + ", erstelldatum=" + erstelldatum + ", ersteller=" + ersteller + ", preis=" + preis + ", verlag=" + verlag + ", fach=" + fach + ", abt=" + abt + ", jahrgang=" + jahrgang + ", lehrerexample=" + lehrerexample + ", status_aktiv=" + status_aktiv + '}';
     }
-    
-    
-    
+
+
+    @Override
+    public List getId() {
+        List retVal=new ArrayList();
+        
+        retVal.add(id_buch);
+        
+        return retVal;
+    }
+
+    @Override
+    public void setId(int d) {
+        id_buch=d;
+    }
+
+    @Override
+    public String getIndexQry(){
+        String retVal="";
+        
+        retVal+=idxNames.get(0)+"="+this.id_buch+" ";
+        
+        return retVal;
+    }
 }
