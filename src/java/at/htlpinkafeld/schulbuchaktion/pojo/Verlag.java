@@ -5,42 +5,67 @@
  */
 package at.htlpinkafeld.schulbuchaktion.pojo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
  *
- * @author Alex
+ * @author marko
  */
-public class Verlag {
-    private int VerlagNr;
-    private String VerlagBez;
+public class Verlag implements Identifiable{
+    private int id_Verlag;
+    private String verlag_Name;
+    private String anschrift;
+    
+    private static List idxNames;
 
-    public Verlag(int VerlagNr, String VerlagBez) {
-        this.VerlagNr = VerlagNr;
-        this.VerlagBez = VerlagBez;
+    public Verlag(int id_Verlag, String verlag_Name, String anschrift) {
+        this.id_Verlag = id_Verlag;
+        this.verlag_Name = verlag_Name;
+        this.anschrift = anschrift;
+        
+        if(idxNames==null){
+            
+            idxNames=new ArrayList();
+            idxNames.add("ID_VERLAG");
+        }
     }
 
-    public int getVerlagNr() {
-        return VerlagNr;
+    public Verlag(int id_verlag, String verlag_Name) {
+        this(id_verlag,verlag_Name,"");
     }
 
-    public void setVerlagNr(int VerlagNr) {
-        this.VerlagNr = VerlagNr;
+    public int getId_Verlag() {
+        return id_Verlag;
     }
 
-    public String getVerlagBez() {
-        return VerlagBez;
+    public void setId_Verlag(int id_Verlag) {
+        this.id_Verlag = id_Verlag;
     }
 
-    public void setVerlagBez(String VerlagBez) {
-        this.VerlagBez = VerlagBez;
+    public String getVerlag_Name() {
+        return verlag_Name;
+    }
+
+    public void setVerlag_Name(String verlag_Name) {
+        this.verlag_Name = verlag_Name;
+    }
+
+    public String getAnschrift() {
+        return anschrift;
+    }
+
+    public void setAnschrift(String anschrift) {
+        this.anschrift = anschrift;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 37 * hash + this.VerlagNr;
-        hash = 37 * hash + Objects.hashCode(this.VerlagBez);
+        int hash = 5;
+        hash = 79 * hash + this.id_Verlag;
+        hash = 79 * hash + Objects.hashCode(this.verlag_Name);
+        hash = 79 * hash + Objects.hashCode(this.anschrift);
         return hash;
     }
 
@@ -56,18 +81,35 @@ public class Verlag {
             return false;
         }
         final Verlag other = (Verlag) obj;
-        if (this.VerlagNr != other.VerlagNr) {
+        if (this.id_Verlag != other.id_Verlag) {
             return false;
         }
-        if (!Objects.equals(this.VerlagBez, other.VerlagBez)) {
+        if (!Objects.equals(this.verlag_Name, other.verlag_Name)) {
+            return false;
+        }
+        if (!Objects.equals(this.anschrift, other.anschrift)) {
             return false;
         }
         return true;
     }
 
     @Override
-    public String toString() {
-        return "Verlag{" + "VerlagNr=" + VerlagNr + ", VerlagBez=" + VerlagBez + '}';
+    public List getId() {
+        List retVal=new ArrayList();
+        
+        retVal.add(id_Verlag);
+        
+        return retVal;
+    }
+
+    @Override
+    public void setId(int d) {
+        id_Verlag=d;
+    }
+
+    @Override
+    public String getIndexQry() {
+        return idxNames.get(0)+"="+id_Verlag;
     }
     
     

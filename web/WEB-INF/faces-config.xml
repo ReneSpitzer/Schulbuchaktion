@@ -4,27 +4,73 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
-   <navigation-rule>
-       <from-view-id>/index.xhtml</from-view-id>
-       <navigation-case>
-           <from-outcome>blist</from-outcome>
-           <to-view-id>/buecher.xhtml></to-view-id>  
-       </navigation-case>
-   </navigation-rule> 
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>blist</from-outcome>
+            <to-view-id>/buecher.xhtml></to-view-id>  
+        </navigation-case>
+    </navigation-rule>
+   
+    <navigation-rule>
+        <from-view-id>/buecher.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>reload</from-outcome>
+            <to-view-id>/buecher.xhtml></to-view-id>  
+        </navigation-case>
+       
+        <navigation-case>
+            <from-outcome>config</from-outcome>
+            <to-view-id>/buecherconfig.xhtml></to-view-id>  
+        </navigation-case>
+    </navigation-rule> 
+   
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/loginpage.xhtml></to-view-id>  
+        </navigation-case>
+    </navigation-rule> 
+   
+    <navigation-rule>
+        <from-view-id>/buecherconfig.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>ready</from-outcome>
+            <to-view-id>/buecher.xhtml></to-view-id>  
+        </navigation-case>
+    </navigation-rule> 
     
-   <converter>
-       <converter-id>FachConverter</converter-id>
-       <converter-class>at.htlpinkafeld.converter.FachConverter</converter-class>
-       
-   </converter>
-   <converter>
-       <converter-id>AbtConverter</converter-id>
-       <converter-class>at.htlpinkafeld.converter.AbtConverter</converter-class>
-       
-   </converter>
-      <converter>
-       <converter-id>DateConverter</converter-id>
-       <converter-class>at.htlpinkafeld.converter.DateConverter</converter-class>
-       
-   </converter>
+      <navigation-rule>
+        <from-view-id>/lehrerzuteilung.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>home</from-outcome>
+            <to-view-id>/index.xhtml></to-view-id>  
+        </navigation-case>
+    </navigation-rule> 
+   
+  
+    
+    <converter>
+        <converter-id>FachConverter</converter-id>
+        <converter-class>at.htlpinkafeld.schulbuchaktion.converter.FachConverter</converter-class>     
+    </converter>
+     <converter>
+        <converter-id>UserConverter</converter-id>
+        <converter-class>at.htlpinkafeld.schulbuchaktion.converter.UserConverter</converter-class>     
+    </converter>
+    
+    <converter>
+        <converter-id>AbtConverter</converter-id>
+        <converter-class>at.htlpinkafeld.schulbuchaktion.converter.AbtConverter</converter-class>     
+    </converter>
+    
+    <converter>
+        <converter-id>DateConverter</converter-id>
+        <converter-class>at.htlpinkafeld.schulbuchaktion.converter.DateConverter</converter-class>    
+    </converter>
+     <converter>
+        <converter-id>UserConverter</converter-id>
+        <converter-class>at.htlpinkafeld.schulbuchaktion.converter.UserConverter</converter-class>    
+    </converter>
 </faces-config>

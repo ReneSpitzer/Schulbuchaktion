@@ -4,18 +4,14 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-
-
-
-
-    <h:head>
-        <title>Buecher</title>
+    <head>
+        <title>Benutzer</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </h:head>
-    <h:body>
-        <ui:composition template="./WEB-INF/template.xhtml">
+    </head>
+    <body>
+          <ui:composition template="./WEB-INF/template.xhtml">
             <ui:define name="top">
-                <h:outputText value="Buecherliste"/>
+                <h:outputText value="Fachzuteilung"/>
             </ui:define>
             <ui:define name="content">
                 <h:form>
@@ -42,6 +38,12 @@
                                 <h:outputText value="Schulbuchtitel-kurz    "/>
                             </f:facet>
                             <h:outputText value="#{buch.sb_titel_kurz}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="ISBN   "/>
+                            </f:facet>
+                            <h:outputText value="#{buch.isbn}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
@@ -76,13 +78,13 @@
                             <f:facet name="header">
                                 <h:outputText value="Fach   "/>
                             </f:facet>
-                            <h:outputText value="#{buch.fach.fachbez}" />
+                            <h:outputText value="#{buch.fach}" converter="FachConverter"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Abteilung"/>
                             </f:facet>
-                            <h:outputText value="#{buch.abt.abt_name}"/>
+                            <h:outputText value="#{buch.abt}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
@@ -92,9 +94,9 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="Status "/>
+                                <h:outputText value="Buechercol "/>
                             </f:facet>
-                            <h:outputText value="#{buch.status_aktiv}"/>
+                            <h:outputText value="#{buch.buechercol}"/>
                         </h:column>
                         <h:column>
                             <h:commandLink value="edit" action="#{buchBean.edit(buch)}"/>
@@ -103,10 +105,10 @@
                             <h:commandLink value="del" action="#{buchBean.delete(buch)}" immediate="true"/>
                         </h:column>
                     </h:dataTable>
-                    <h:commandButton value="Neues Buch hinzufügen" action="buecherconfig.xhtml"/>
-                    <h:commandButton action="/index.xhtml" immediate="true"   value="Zurück"/>
+                     <h:commandButton value="Neues Buch hinzufügen" action="buecherconfig.xhtml"/>
+
                 </h:form>
             </ui:define>
         </ui:composition>
-    </h:body>
+    </body>
 </html>

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package at.htlpinkafeld.dao;
 
 import at.htlpinkafeld.schulbuchaktion.pojo.Fach;
 
@@ -12,5 +12,4 @@ import at.htlpinkafeld.schulbuchaktion.pojo.Fach;
  * @author marko
  */
 public interface FachDAO extends BaseDAO<Fach>{
-    
 }

@@ -5,40 +5,53 @@
  */
 package at.htlpinkafeld.schulbuchaktion.pojo;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 /**
  *
  * @author Alex
  */
-public class JahresBuecher {
-    private int buecher_id_buch;
-    private int jahr_jahr;
+public class JahresBuecher implements Identifiable{
+    private Buch buch;
+    private Jahr jahr;
+    
+    private static List idxNames;
 
-    public JahresBuecher(int buecher_id_buch, int jahr_jahr) {
-        this.buecher_id_buch = buecher_id_buch;
-        this.jahr_jahr = jahr_jahr;
+    public JahresBuecher(Buch buch, Jahr jahr) {
+        this.buch = buch;
+        this.jahr = jahr;
+        
+        if(idxNames==null)
+        {
+            idxNames=new ArrayList();
+            idxNames.add("BUECHER_ID_BUCH");
+            idxNames.add("JAHR_JAHR");
+        }
     }
 
-    public int getBuecher_id_buch() {
-        return buecher_id_buch;
+    public Buch getBuch() {
+        return buch;
     }
 
-    public void setBuecher_id_buch(int buecher_id_buch) {
-        this.buecher_id_buch = buecher_id_buch;
+    public void setBuch(Buch buch) {
+        this.buch = buch;
     }
 
-    public int getJahr_jahr() {
-        return jahr_jahr;
+    public Jahr getJahr() {
+        return jahr;
     }
 
-    public void setJahr_jahr(int jahr_jahr) {
-        this.jahr_jahr = jahr_jahr;
+    public void setJahr(Jahr jahr) {
+        this.jahr = jahr;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + this.buecher_id_buch;
-        hash = 97 * hash + this.jahr_jahr;
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.buch);
+        hash = 29 * hash + Objects.hashCode(this.jahr);
         return hash;
     }
 
@@ -54,19 +67,37 @@ public class JahresBuecher {
             return false;
         }
         final JahresBuecher other = (JahresBuecher) obj;
-        if (this.buecher_id_buch != other.buecher_id_buch) {
+        if (!Objects.equals(this.buch, other.buch)) {
             return false;
         }
-        if (this.jahr_jahr != other.jahr_jahr) {
+        if (!Objects.equals(this.jahr, other.jahr)) {
             return false;
         }
         return true;
     }
 
     @Override
-    public String toString() {
-        return "JahresBuecher{" + "buecher_id_buch=" + buecher_id_buch + ", jahr_jahr=" + jahr_jahr + '}';
+    public List getId() {
+        List retVal=new ArrayList();
+        
+        retVal.add(jahr);
+        retVal.add(buch);
+        
+        return retVal;
     }
-    
+
+    @Override
+    public void setId(int d) {
+        System.out.println("NO GENERIC KEYS");
+    }
+
+    @Override
+    public String getIndexQry() {
+        String retVal="";
+        
+        retVal+=idxNames.get(0)+"="+this.buch.getId_buch()+" and "+idxNames.get(1)+"="+this.jahr.getJahr();
+        
+        return retVal;
+    }
     
 }

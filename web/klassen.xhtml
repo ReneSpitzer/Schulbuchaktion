@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+     <head>
+        <title>Klassenliste</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <ui:composition template="./WEB-INF/template.xhtml">
+             <ui:define name="top">
+                <h:outputText value="Klassenliste"/>
+            </ui:define>
+            <ui:define name="content">
+                <h:form>
+
+                    <h:dataTable value="#{klassenBean.schulbuchmanagerservice.klist}" var="klasse" cellpadding="10" cellspacing="5" >
+                     
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Jahrgang"/>
+                            </f:facet>
+                            <h:outputText value="#{klasse.jahrgang}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Klassenbezeichnung"/>
+                            </f:facet>
+                            <h:outputText value="#{klasse.klassen_Bez}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Schueleranzahl"/>
+                            </f:facet>
+                            <h:outputText value="#{klasse.schueler_anz}"/>
+                        </h:column>  <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Abteilung"/>
+                            </f:facet>
+                            <h:outputText value="#{klasse.abt.abt_name}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Repetentenanzahl"/>
+                            </f:facet>
+                            <h:outputText value="#{klasse.rep_anz}"/>
+                        </h:column>               
+                        <h:column>
+                            <h:commandLink value="edit" action="#{klassenBean.edit(klasse)}"/>
+                        </h:column>
+                        <h:column>
+                            <h:commandLink value="del" action="#{klassenBean.delete(klasse)}" immediate="true"/>
+                        </h:column>
+                    </h:dataTable>
+                    <h:commandButton value="Neue Klasse hinzufügen" action="klassenconfig.xhtml"/>
+                    <h:commandButton action="index.xhtml" immediate="true" value="Zurück"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

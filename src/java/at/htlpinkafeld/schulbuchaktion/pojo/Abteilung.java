@@ -5,19 +5,36 @@
  */
 package at.htlpinkafeld.schulbuchaktion.pojo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
  *
  * @author Alex
  */
-public class Abteilung {
+public class Abteilung implements Identifiable{
     private int id_abteilung;
     private String abt_name;
 
+    private static List idxNames;
+    
     public Abteilung(int id_abteilung, String abt_name) {
         this.id_abteilung = id_abteilung;
         this.abt_name = abt_name;
+        
+        if(idxNames==null)
+        {
+            idxNames=new ArrayList();
+            idxNames.add("ID_ABTEILUNG");
+        }
+    }
+    public Abteilung(){
+        
+    }
+    public Abteilung(Abteilung abt){
+        this.abt_name=abt.abt_name;
+        this.id_abteilung=abt.id_abteilung;
     }
 
     public int getId_abteilung() {
@@ -68,6 +85,29 @@ public class Abteilung {
     @Override
     public String toString() {
         return   id_abteilung + " " + abt_name;
+    }
+
+    @Override
+    public List getId() {
+        List retVal=new ArrayList();
+        
+        retVal.add(id_abteilung);
+        
+        return retVal;
+    }
+
+    @Override
+    public void setId(int d) {
+        id_abteilung=d;
+    }
+
+    @Override
+    public String getIndexQry() {
+        String retVal="";
+        
+        retVal+=idxNames.get(0)+"="+id_abteilung;
+        
+        return retVal;
     }
     
     

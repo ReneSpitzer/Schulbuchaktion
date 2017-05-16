@@ -5,15 +5,25 @@
  */
 package at.htlpinkafeld.schulbuchaktion.pojo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Alex
  */
-public class Jahr {
+public class Jahr implements Identifiable{
     private int jahr;
+    
+    private static List idx;
 
     public Jahr(int jahr) {
         this.jahr = jahr;
+        if(idx==null)
+        {
+            idx= new ArrayList();
+            idx.add("JAHR");
+        }
     }
 
     public int getJahr() {
@@ -27,6 +37,29 @@ public class Jahr {
     @Override
     public String toString() {
         return "Jahr{" + "jahr=" + jahr + '}';
+    }
+
+    @Override
+    public List getId() {
+        List retVal = new ArrayList();
+        
+        retVal.add(jahr);
+        
+        return retVal;
+    }
+
+    @Override
+    public void setId(int d) {
+        jahr=d;
+    }
+
+    @Override
+    public String getIndexQry() {
+        String retVal="";
+        
+        retVal+=idx.get(0)+"="+jahr+" ";
+        
+        return retVal;
     }
     
     

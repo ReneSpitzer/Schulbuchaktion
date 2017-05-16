@@ -5,35 +5,49 @@
  */
 package at.htlpinkafeld.schulbuchaktion.pojo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
  *
  * @author Alex
  */
-public class Nachbestelliste {
-    private int jahr_jahr;
+public class Nachbestelliste implements Identifiable{
+    private Jahr jahr;
     private int nachbestell_id;
     private int anz;
-    private int klassen_jahrgang;
-    private String klassen_bez;
-    private int jahresBuecher_Buecher_id_Buch;
+    private Klasse klasse;
+    private JahresBuecher buch;
+    
+    private static List idxNames;
 
-    public Nachbestelliste(int jahr_jahr, int nachbestell_id, int anz, int klassen_jahrgang, String klassen_bez, int jahresBuecher_Buecher_id_Buch) {
-        this.jahr_jahr = jahr_jahr;
+    public Nachbestelliste(Jahr jahr, int nachbestell_id, int anz, Klasse klasse,JahresBuecher buch) {
+        this.jahr = jahr;
         this.nachbestell_id = nachbestell_id;
         this.anz = anz;
-        this.klassen_jahrgang = klassen_jahrgang;
-        this.klassen_bez = klassen_bez;
-        this.jahresBuecher_Buecher_id_Buch = jahresBuecher_Buecher_id_Buch;
+        this.klasse=klasse;
+        this.buch = buch;
+        
+        if(idxNames==null)
+        {
+            idxNames=new ArrayList();
+            idxNames.add("JAHR_JAHR");
+            idxNames.add("ID_NACHBESTELLLISTE");
+            idxNames.add("KLASSEN_JAHR");
+            idxNames.add("KLASSEN_JAHRGANG");
+            idxNames.add("KLASSEN_BEZEICHNUNG");
+            idxNames.add("JAHRESBUCH_BUCHID");
+            idxNames.add("JAHRESBUCH_JAHR");
+        }
     }
 
-    public int getJahr_jahr() {
-        return jahr_jahr;
+    public Jahr getJahr() {
+        return jahr;
     }
 
-    public void setJahr_jahr(int jahr_jahr) {
-        this.jahr_jahr = jahr_jahr;
+    public void setJahr(Jahr jahr) {
+        this.jahr = jahr;
     }
 
     public int getNachbestell_id() {
@@ -52,39 +66,30 @@ public class Nachbestelliste {
         this.anz = anz;
     }
 
-    public int getKlassen_jahrgang() {
-        return klassen_jahrgang;
+    public Klasse getKlasse() {
+        return klasse;
     }
 
-    public void setKlassen_jahrgang(int klassen_jahrgang) {
-        this.klassen_jahrgang = klassen_jahrgang;
+    public void setKlasse(Klasse klasse) {
+        this.klasse = klasse;
     }
 
-    public String getKlassen_bez() {
-        return klassen_bez;
+    public JahresBuecher getBuch() {
+        return buch;
     }
 
-    public void setKlassen_bez(String klassen_bez) {
-        this.klassen_bez = klassen_bez;
-    }
-
-    public int getJahresBuecher_Buecher_id_Buch() {
-        return jahresBuecher_Buecher_id_Buch;
-    }
-
-    public void setJahresBuecher_Buecher_id_Buch(int jahresBuecher_Buecher_id_Buch) {
-        this.jahresBuecher_Buecher_id_Buch = jahresBuecher_Buecher_id_Buch;
+    public void setBuch(JahresBuecher buch) {
+        this.buch = buch;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 83 * hash + this.jahr_jahr;
-        hash = 83 * hash + this.nachbestell_id;
-        hash = 83 * hash + this.anz;
-        hash = 83 * hash + this.klassen_jahrgang;
-        hash = 83 * hash + Objects.hashCode(this.klassen_bez);
-        hash = 83 * hash + this.jahresBuecher_Buecher_id_Buch;
+        hash = 29 * hash + Objects.hashCode(this.jahr);
+        hash = 29 * hash + this.nachbestell_id;
+        hash = 29 * hash + this.anz;
+        hash = 29 * hash + Objects.hashCode(this.klasse);
+        hash = 29 * hash + Objects.hashCode(this.buch);
         return hash;
     }
 
@@ -100,22 +105,19 @@ public class Nachbestelliste {
             return false;
         }
         final Nachbestelliste other = (Nachbestelliste) obj;
-        if (this.jahr_jahr != other.jahr_jahr) {
-            return false;
-        }
         if (this.nachbestell_id != other.nachbestell_id) {
             return false;
         }
         if (this.anz != other.anz) {
             return false;
         }
-        if (this.klassen_jahrgang != other.klassen_jahrgang) {
+        if (!Objects.equals(this.jahr, other.jahr)) {
             return false;
         }
-        if (this.jahresBuecher_Buecher_id_Buch != other.jahresBuecher_Buecher_id_Buch) {
+        if (!Objects.equals(this.klasse, other.klasse)) {
             return false;
         }
-        if (!Objects.equals(this.klassen_bez, other.klassen_bez)) {
+        if (!Objects.equals(this.buch, other.buch)) {
             return false;
         }
         return true;
@@ -123,8 +125,40 @@ public class Nachbestelliste {
 
     @Override
     public String toString() {
-        return "Nachbestelliste{" + "jahr_jahr=" + jahr_jahr + ", nachbestell_id=" + nachbestell_id + ", anz=" + anz + ", klassen_jahrgang=" + klassen_jahrgang + ", klassen_bez=" + klassen_bez + ", jahresBuecher_Buecher_id_Buch=" + jahresBuecher_Buecher_id_Buch + '}';
+        return "Nachbestelliste{" + "jahr=" + jahr + ", nachbestell_id=" + nachbestell_id + ", anz=" + anz + ", klasse=" + klasse + ", buch=" + buch + '}';
     }
-    
+
+    @Override
+    public List getId() {
+        List retVal=new ArrayList();
+        
+        retVal.add(jahr);
+        retVal.add(nachbestell_id);
+        retVal.add(klasse);
+        retVal.add(buch);
+        
+        return retVal;
+    }
+
+    @Override
+    public void setId(int d) {
+        System.out.println("NO GENERIC KEYS");
+    }
+
+    @Override
+    public String getIndexQry() {
+             String retVal="";
+        
+        retVal+=idxNames.get(0)+"="+jahr.getJahr()+" and "+
+                idxNames.get(1)+"="+this.nachbestell_id+" and "+
+                idxNames.get(2)+"="+klasse.getJahrIdx().getJahr()+" and "+
+                idxNames.get(3)+"="+klasse.getJahrgang()+" and "+
+                idxNames.get(4)+"="+"\""+klasse.getKlassen_Bez()+"\""+" and "+
+                idxNames.get(5)+"="+buch.getBuch().getId_buch()+" and "+
+                idxNames.get(6)+"="+buch.getJahr().getJahr()+" ";
+        
+        return retVal;
+    }
+ 
     
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>Lehrerzuteilung</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <ui:composition template="./WEB-INF/template.xhtml">
+            <ui:define name="top">
+                <h:outputText value="Lehrerzuteilung"/>
+            </ui:define>
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGrid columns="1">
+                        <h:outputLabel for="Leh" value="Lehrer"/>
+                        <h:selectOneMenu  id="Leh" value="#{lehrerBean.user}" converter="UserConverter">     
+                            <f:selectItems value="#{lehrerBean.schulbuchmanagerservice.ulist}" var="user" 
+                                           itemValue="#{user}" itemLabel="#{user.bez}" />  
+     
+                        </h:selectOneMenu>
+
+                        <h:outputLabel for="Fa" value="Fach"/>
+                        <h:selectOneMenu  id="Fa" value="#{lehrerBean.user.fachverantwortlicher_fuer}" converter="FachConverter">     
+                            <f:selectItems value="#{lehrerBean.schulbuchmanagerservice.flist}" var="fach" 
+                                           itemValue="#{fach}" itemLabel="#{fach.fachbez}" />  
+
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    <h:commandButton action="#{lehrerBean.add}" value="Zuteilen" />
+                    <h:commandButton action="zuteilungsliste.xhtml" immediate="true" value="Zurück"/>
+                    <h:messages/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+
+</html>

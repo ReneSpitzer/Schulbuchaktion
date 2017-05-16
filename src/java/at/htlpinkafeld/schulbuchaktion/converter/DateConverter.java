@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package at.htlpinkafeld.converter;
+package at.htlpinkafeld.schulbuchaktion.converter;
 
 import java.util.GregorianCalendar;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import sun.util.calendar.LocalGregorianCalendar.Date;
+
 
 /**
  *

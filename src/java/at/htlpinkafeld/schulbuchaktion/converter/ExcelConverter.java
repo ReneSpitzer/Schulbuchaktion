@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package at.htlpinkafeld.converter;
+package at.htlpinkafeld.schulbuchaktion.converter;
 
 import  java.io.*;
 import javafx.scene.control.Cell;

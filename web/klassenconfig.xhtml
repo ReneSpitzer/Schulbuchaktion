@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+         xmlns:h="http://java.sun.com/jsf/html"
+         xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>Klassen hinzufügen</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+            <ui:composition template="./WEB-INF/template.xhtml">  
+                  <ui:define name="top">
+                <h:outputText value="Klassen hinzufügen"/>
+            </ui:define>
+        <ui:define name="content">
+       <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="Jahrg" value="Jahrgang"/>
+                <h:inputText id="Jahrg" value="#{klassenBean.klasse.jahrgang}"/>
+                <h:outputLabel for="Kb" value="Klassenbezeichnung"/>
+                <h:inputText id="Kb" value="#{klassenBean.klasse.klassen_Bez}"/>  
+                <h:outputLabel for="Sanz" value="Schueleranzahl"/>
+                <h:inputText id="Sanz" value="#{klassenBean.klasse.schueler_anz}"/>   
+                <h:outputLabel for="Abt" value="Abteilung"/>
+                        <h:selectOneMenu  id="Abt" value="#{klassenBean.klasse.abt}" >     
+                            <f:selectItems value="#{klassenBean.schulbuchmanagerservice.alist}" var="abt" 
+                                           itemValue="#{abt}" itemLabel="#{abt.abt_name}" />  
+                            <f:converter converterId="AbtConverter" />
+                        </h:selectOneMenu>
+                <h:outputLabel for="rep" value="Repetentenanzahl"/>
+                <h:inputText id="rep" value="#{klassenBean.klasse.rep_anz}"/>
+                <f:facet name="footer">
+                    <h:commandButton value="Hinzufügen" action="#{klassenBean.add}" rendered="#{klassenBean.but}"/>
+                    <h:commandButton action="#{klassenBean.save}" value="Speichern"  rendered="#{klassenBean.opposit()}"/>
+                    <h:commandButton action="klassen.xhtml" immediate="true" value="Zurück"/>
+                </f:facet>
+            </h:panelGrid>
+           <h:messages/>
+        </h:form>
+        </ui:define>
+         </ui:composition>
+    </body>
+</html>

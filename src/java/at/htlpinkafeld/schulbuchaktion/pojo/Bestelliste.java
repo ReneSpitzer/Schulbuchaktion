@@ -5,36 +5,48 @@
  */
 package at.htlpinkafeld.schulbuchaktion.pojo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
  *
  * @author Alex
  */
-public class Bestelliste {
-    private int jahr;
+public class Bestelliste implements Identifiable{
+    private Jahr jahr;
     private int id_bestellisten;
     private int anz;
-    private int klassen_jahrgang;
-    private String klasssen_bezeichnung;
-    private int jaehresbuecher_jahresindex;
-    private int jahresbuecher_buecher_id_buch;
+    private Klasse klasse;
+    private JahresBuecher jahresBuch;
+    
+    private static List idxNames;
 
-    public Bestelliste(int jahr, int id_bestellisten, int anz, int klassen_jahrgang, String klasssen_bezeichnung, int jaehresbuecher_jahresindex, int jahresbuecher_buecher_id_buch) {
+    public Bestelliste(Jahr jahr, int id_bestellisten, int anz, Klasse klasse, JahresBuecher jahresBuch) {
         this.jahr = jahr;
         this.id_bestellisten = id_bestellisten;
         this.anz = anz;
-        this.klassen_jahrgang = klassen_jahrgang;
-        this.klasssen_bezeichnung = klasssen_bezeichnung;
-        this.jaehresbuecher_jahresindex = jaehresbuecher_jahresindex;
-        this.jahresbuecher_buecher_id_buch = jahresbuecher_buecher_id_buch;
+        this.klasse = klasse;
+        this.jahresBuch = jahresBuch;
+        
+        if(idxNames==null)
+        {
+            idxNames=new ArrayList();
+            idxNames.add("JAHR_JAHR");
+            idxNames.add("ID_BESTELLISTE");
+            idxNames.add("KLASSEN_JAHR");
+            idxNames.add("KLASSEN_JAHRGANG");
+            idxNames.add("KLASSEN_BEZEICHNUNG");
+            idxNames.add("JAHRESBUCH_BUCHID");
+            idxNames.add("JAHRESBUCH_JAHR");
+        }
     }
 
-    public int getJahr() {
+    public Jahr getJahr() {
         return jahr;
     }
 
-    public void setJahr(int jahr) {
+    public void setJahr(Jahr jahr) {
         this.jahr = jahr;
     }
 
@@ -54,48 +66,30 @@ public class Bestelliste {
         this.anz = anz;
     }
 
-    public int getKlassen_jahrgang() {
-        return klassen_jahrgang;
+    public Klasse getKlasse() {
+        return klasse;
     }
 
-    public void setKlassen_jahrgang(int klassen_jahrgang) {
-        this.klassen_jahrgang = klassen_jahrgang;
+    public void setKlasse(Klasse klasse) {
+        this.klasse = klasse;
     }
 
-    public String getKlasssen_bezeichnung() {
-        return klasssen_bezeichnung;
+    public JahresBuecher getJahresBuch() {
+        return jahresBuch;
     }
 
-    public void setKlasssen_bezeichnung(String klasssen_bezeichnung) {
-        this.klasssen_bezeichnung = klasssen_bezeichnung;
-    }
-
-    public int getJaehresbuecher_jahresindex() {
-        return jaehresbuecher_jahresindex;
-    }
-
-    public void setJaehresbuecher_jahresindex(int jaehresbuecher_jahresindex) {
-        this.jaehresbuecher_jahresindex = jaehresbuecher_jahresindex;
-    }
-
-    public int getJahresbuecher_buecher_id_buch() {
-        return jahresbuecher_buecher_id_buch;
-    }
-
-    public void setJahresbuecher_buecher_id_buch(int jahresbuecher_buecher_id_buch) {
-        this.jahresbuecher_buecher_id_buch = jahresbuecher_buecher_id_buch;
+    public void setJahresBuch(JahresBuecher jahresBuch) {
+        this.jahresBuch = jahresBuch;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 71 * hash + this.jahr;
-        hash = 71 * hash + this.id_bestellisten;
-        hash = 71 * hash + this.anz;
-        hash = 71 * hash + this.klassen_jahrgang;
-        hash = 71 * hash + Objects.hashCode(this.klasssen_bezeichnung);
-        hash = 71 * hash + this.jaehresbuecher_jahresindex;
-        hash = 71 * hash + this.jahresbuecher_buecher_id_buch;
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.jahr);
+        hash = 53 * hash + this.id_bestellisten;
+        hash = 53 * hash + this.anz;
+        hash = 53 * hash + Objects.hashCode(this.klasse);
+        hash = 53 * hash + Objects.hashCode(this.jahresBuch);
         return hash;
     }
 
@@ -111,35 +105,55 @@ public class Bestelliste {
             return false;
         }
         final Bestelliste other = (Bestelliste) obj;
-        if (this.jahr != other.jahr) {
-            return false;
-        }
         if (this.id_bestellisten != other.id_bestellisten) {
             return false;
         }
         if (this.anz != other.anz) {
             return false;
         }
-        if (this.klassen_jahrgang != other.klassen_jahrgang) {
+        if (!Objects.equals(this.jahr, other.jahr)) {
             return false;
         }
-        if (this.jaehresbuecher_jahresindex != other.jaehresbuecher_jahresindex) {
+        if (!Objects.equals(this.klasse, other.klasse)) {
             return false;
         }
-        if (this.jahresbuecher_buecher_id_buch != other.jahresbuecher_buecher_id_buch) {
-            return false;
-        }
-        if (!Objects.equals(this.klasssen_bezeichnung, other.klasssen_bezeichnung)) {
+        if (!Objects.equals(this.jahresBuch, other.jahresBuch)) {
             return false;
         }
         return true;
     }
 
     @Override
-    public String toString() {
-        return "Bestelliste{" + "jahr=" + jahr + ", id_bestellisten=" + id_bestellisten + ", anz=" + anz + ", klassen_jahrgang=" + klassen_jahrgang + ", klasssen_bezeichnung=" + klasssen_bezeichnung + ", jaehresbuecher_jahresindex=" + jaehresbuecher_jahresindex + ", jahresbuecher_buecher_id_buch=" + jahresbuecher_buecher_id_buch + '}';
+    public List getId() {
+        List retVal= new ArrayList();
+        
+        retVal.add(jahr);
+        retVal.add(this.id_bestellisten);
+        retVal.add(this.klasse);
+        retVal.add(this.jahresBuch);
+        
+        return retVal;
     }
-    
-    
+
+    @Override
+    public void setId(int d) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getIndexQry() {
+        String retVal="";
+        
+        retVal+=idxNames.get(0)+"="+jahr.getId().get(0)+" and "+
+                idxNames.get(1)+"="+this.id_bestellisten+" and "+
+                idxNames.get(2)+"="+klasse.getJahrIdx().getJahr()+" and "+
+                idxNames.get(3)+"="+klasse.getJahrgang()+" and "+
+                idxNames.get(4)+"="+"\""+klasse.getKlassen_Bez()+"\""+" and "+
+                idxNames.get(5)+"="+jahresBuch.getBuch().getId_buch()+" and "+
+                idxNames.get(6)+"="+jahresBuch.getJahr().getJahr()+" ";
+        
+        return retVal;
+    }
+
     
 }

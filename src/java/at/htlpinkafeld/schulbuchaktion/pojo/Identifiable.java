@@ -3,14 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package at.htlpinkafeld.dao;
+package at.htlpinkafeld.schulbuchaktion.pojo;
 
-import at.htlpinkafeld.schulbuchaktion.pojo.Buch;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  *
  * @author marko
  */
-interface BuecherDAO extends BaseDAO<Buch>{ 
-    void setBuchStatus(Buch idx, boolean val);
+public interface Identifiable extends Serializable{ 
+    List getId();
+    void setId(int d);
+    String getIndexQry();
 }

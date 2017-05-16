@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package at.htlpinkafeld.dao;
 
 import java.sql.*;
 import javax.naming.*;
 import javax.sql.DataSource;
 
 public class ConnectionManager {
-   private static final String DATASOURCE = "jdbc/SchulbuchAktionDB";
+   private static final String DATASOURCE = "jdbc/schulbuchaktiondb";
    private static ConnectionManager connMgrInst = null;
    private DataSource ds = null;
 
@@ -30,7 +30,7 @@ public class ConnectionManager {
       }
    }
 
-   public Connection getConn() {
+   public Connection getConnection() {
       Connection retVal = null;
       try {
          retVal = ds.getConnection();  //get a connection from the pool

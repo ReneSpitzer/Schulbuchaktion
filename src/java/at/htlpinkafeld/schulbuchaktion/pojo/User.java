@@ -5,6 +5,8 @@
  */
 package at.htlpinkafeld.schulbuchaktion.pojo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -12,7 +14,7 @@ import java.util.Objects;
  * @author Alex
  */
 
-public class User {
+public class User implements Identifiable{
     private int id_User;
     private String bez;
     private String username;
@@ -21,9 +23,58 @@ public class User {
     private boolean abteilungsvorstand;
     private boolean schulbuchverantwortlicher;
     private boolean verwalter;
+    private Fach fachverantwortlicher_fuer;
     private String email;
+    
+    private static List idxNames;
 
-    public User(int id_User, String bez, String username, String passwort, boolean admin, boolean abteilungsvorstand, boolean schulbuchverantwortlicher, boolean verwalter, String email) {
+    public User(int id_User, String bez, String username, String passwort, boolean admin, boolean abteilungsvorstand, boolean schulbuchverantwortlicher, boolean verwalter,Fach fachverantwortlicher_fuer, String email) {
+        this.id_User = id_User;
+        this.bez = bez;
+        this.username = username;
+        this.passwort = passwort;
+        this.admin = admin;
+        this.abteilungsvorstand = abteilungsvorstand;
+        this.schulbuchverantwortlicher = schulbuchverantwortlicher;
+        this.fachverantwortlicher_fuer= fachverantwortlicher_fuer;
+        this.verwalter = verwalter;
+        this.email = email;
+        
+        if(idxNames==null){
+            idxNames=new ArrayList();
+            idxNames.add("ID_USER");
+        }
+    }
+
+    public User(User s) {
+      this.id_User=s.id_User;
+      this.bez=s.bez;
+      this.username=s.username;
+      this.passwort=s.passwort;
+          this.admin = s.admin;
+        this.abteilungsvorstand = s.abteilungsvorstand;
+        this.schulbuchverantwortlicher = s.schulbuchverantwortlicher;
+
+        this.verwalter = s.verwalter;
+        this.email = s.email;
+    }
+
+  
+     
+
+
+    public Fach getFachverantwortlicher_fuer() {
+        return fachverantwortlicher_fuer;
+    }
+
+    public void setFachverantwortlicher_fuer(Fach fachverantwortlicher_fuer) {
+        this.fachverantwortlicher_fuer = fachverantwortlicher_fuer;
+    }
+
+    public User() {
+        this(0,"","","",false,false,false,false,null,"");
+    }
+     public User(int id_User, String bez, String username, String passwort, boolean admin, boolean abteilungsvorstand, boolean schulbuchverantwortlicher, boolean verwalter, String email) {
         this.id_User = id_User;
         this.bez = bez;
         this.username = username;
@@ -33,10 +84,9 @@ public class User {
         this.schulbuchverantwortlicher = schulbuchverantwortlicher;
         this.verwalter = verwalter;
         this.email = email;
-    }
-
-    public User() {
-        this(0,"","","",false,false,false,false,"");
+        this.fachverantwortlicher_fuer= new Fach(0,"");
+        
+ 
     }
 
     public String getEmail() {
@@ -163,15 +213,17 @@ public class User {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 89 * hash + this.id_User;
-        hash = 89 * hash + Objects.hashCode(this.bez);
-        hash = 89 * hash + Objects.hashCode(this.username);
-        hash = 89 * hash + Objects.hashCode(this.passwort);
-        hash = 89 * hash + (this.admin ? 1 : 0);
-        hash = 89 * hash + (this.abteilungsvorstand ? 1 : 0);
-        hash = 89 * hash + (this.schulbuchverantwortlicher ? 1 : 0);
-        hash = 89 * hash + (this.verwalter ? 1 : 0);
+        int hash = 7;
+        hash = 13 * hash + this.id_User;
+        hash = 13 * hash + Objects.hashCode(this.bez);
+        hash = 13 * hash + Objects.hashCode(this.username);
+        hash = 13 * hash + Objects.hashCode(this.passwort);
+        hash = 13 * hash + (this.admin ? 1 : 0);
+        hash = 13 * hash + (this.abteilungsvorstand ? 1 : 0);
+        hash = 13 * hash + (this.schulbuchverantwortlicher ? 1 : 0);
+        hash = 13 * hash + (this.verwalter ? 1 : 0);
+        hash = 13 * hash + Objects.hashCode(this.fachverantwortlicher_fuer);
+        hash = 13 * hash + Objects.hashCode(this.email);
         return hash;
     }
 
@@ -211,14 +263,38 @@ public class User {
         if (!Objects.equals(this.passwort, other.passwort)) {
             return false;
         }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        if (!Objects.equals(this.fachverantwortlicher_fuer, other.fachverantwortlicher_fuer)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "User{" + "id_User=" + id_User + ", bez=" + bez + ", username=" + username + ", passwort=" + passwort + ", admin=" + admin + ", abteilungsvorstand=" + abteilungsvorstand + ", schulbuchverantwortlicher=" + schulbuchverantwortlicher + ", verwalter=" + verwalter + '}';
+        return  id_User  + bez +  username +  passwort  + admin  + abteilungsvorstand  + schulbuchverantwortlicher + 
+                 verwalter +  fachverantwortlicher_fuer  + email;
     }
-    
-    
+
+    @Override
+    public List getId() {
+        List retVal=new ArrayList();
+        
+        retVal.add(id_User);
+        
+        return retVal;
+    }
+
+    @Override
+    public void setId(int d) {
+        id_User=d;
+    }
+
+    @Override
+    public String getIndexQry() {
+        return ""+idxNames.get(0)+"="+id_User;
+    }
 }
 

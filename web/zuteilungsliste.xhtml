@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <head>
+        <title>Zuteilungsliste</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <ui:composition template="./WEB-INF/template.xhtml">
+             <ui:define name="top">
+                <h:outputText value="Zuteilungsliste"/>
+            </ui:define>
+            <ui:define name="content">
+                <h:form>
+
+                    <h:dataTable value="#{lehrerBean.schulbuchmanagerservice.ulist}" var="leh" cellpadding="10" cellspacing="5" >
+                     
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Lehrer"/>
+                            </f:facet>
+                            <h:outputText value="#{leh.bez}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fach"/>
+                            </f:facet>
+                            <h:outputText value="#{leh.fachverantwortlicher_fuer.fachbez}"/>
+                        </h:column>
+                        <h:column>
+                            <h:commandLink value="del" action="#{lehrerBean.delete}" immediate="true"/>
+                            
+                        </h:column>
+                    </h:dataTable>
+                     <h:commandButton value="Neuen Lehrer zuteilen" action="lehrerzuteilung.xhtml"/>
+                            <h:commandButton action="/index.xhtml" immediate="true"   value="Zurück"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

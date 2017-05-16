@@ -5,12 +5,12 @@
  */
 package at.htlpinkafeld.dao;
 
-import at.htlpinkafeld.schulbuchaktion.pojo.Buch;
+import at.htlpinkafeld.schulbuchaktion.pojo.Jahr;
 
 /**
  *
  * @author marko
  */
-interface BuecherDAO extends BaseDAO<Buch>{ 
-    void setBuchStatus(Buch idx, boolean val);
+public interface JahrDAO extends BaseDAO<Jahr>{
+    
 }

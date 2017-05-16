@@ -5,12 +5,12 @@
  */
 package at.htlpinkafeld.dao;
 
-import at.htlpinkafeld.schulbuchaktion.pojo.Buch;
+import at.htlpinkafeld.schulbuchaktion.pojo.Abteilung;
 
 /**
  *
  * @author marko
  */
-interface BuecherDAO extends BaseDAO<Buch>{ 
-    void setBuchStatus(Buch idx, boolean val);
+public interface AbteilungDAO extends BaseDAO<Abteilung>{
+    
 }

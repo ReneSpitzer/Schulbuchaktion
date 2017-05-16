@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package at.htlpinkafeld.dao;
 
-import at.htlpinkafeld.schulbuchaktion.pojo.Indizes;
+import at.htlpinkafeld.schulbuchaktion.pojo.Identifiable;
 import java.sql.PreparedStatement;
 import java.util.List;
 
@@ -14,11 +14,13 @@ import java.util.List;
  * @author marko
  */
 public interface BaseDAO<T> {   
-    List<T> find(String selectStatement);
-    List<T> findAll();
-    T findByID(Indizes idx);
-    void delete(T obj);
-    PreparedStatement getInsertStatement(T obj);
-    void insert(T obj);
-    void update(T obj);
+    public void insert(T t);
+
+    public T read(List id);
+
+    public void update(T t);
+
+    public void delete(T t);
+
+    public List<T> list();
 }

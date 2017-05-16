@@ -5,7 +5,7 @@
  */
 package at.htlpinkafeld.schulbuchaktion.gui;
 
-import at.htlpinkafeld.schulbuchaktion.pojo.User;
+import at.htlpinkafeld.schulbuchaktion.pojo.Fach;
 import at.htlpinkafeld.schulbuchaktion.service.Schulbuchmanagerservice;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,33 +13,25 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
-
 /**
  *
  * @author rene-_000
  */
 @ManagedBean
 @SessionScoped
-public class UserBean {
-    
-     @ManagedProperty(value="#{schulbuchmanagerservice}")
+public class FachBean {
+    @ManagedProperty(value="#{schulbuchmanagerservice}")
      Schulbuchmanagerservice schulbuchmanagerservice;
-      
-    private User user = new User();
- 
-    
-    public UserBean(){
-     
+        
+        private Fach fach;
+        
+   public FachBean(){
+   }     
+     public List<Fach> getFlist() {
+        return schulbuchmanagerservice.getFlist();
     }
-    
-    
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+       public void setFlist(List<Fach> flist) {
+        this.schulbuchmanagerservice.setFlist(flist);
     }
 
     public Schulbuchmanagerservice getSchulbuchmanagerservice() {
@@ -49,19 +41,15 @@ public class UserBean {
     public void setSchulbuchmanagerservice(Schulbuchmanagerservice schulbuchmanagerservice) {
         this.schulbuchmanagerservice = schulbuchmanagerservice;
     }
+       
 
-    
 
-   
-   public String login(){
-      for(User u:this.schulbuchmanagerservice.getUlist()){
-          if(u.getUsername().equals(user.getUsername())&&u.getPasswort().equals(user.getPasswort())){
-              return "/index.xhtml";
-          }
-      }
-        
-            return null;
+    public Fach getFach() {
+        return fach;
     }
-    
-    
+
+    public void setFach(Fach fach) {
+        this.fach = fach;
+    }
+      
 }

@@ -6,9 +6,13 @@
 package at.htlpinkafeld.schulbuchaktion.gui;
 
 import at.htlpinkafeld.schulbuchaktion.pojo.Buch;
+import at.htlpinkafeld.schulbuchaktion.pojo.Fach;
+import at.htlpinkafeld.schulbuchaktion.service.Schulbuchmanagerservice;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
@@ -20,19 +24,23 @@ import javax.faces.event.ValueChangeEvent;
 @ManagedBean
 @SessionScoped
 public class BuchBean {
-    private List<Buch> blist= new ArrayList();
+
+     @ManagedProperty(value="#{schulbuchmanagerservice}")
+    Schulbuchmanagerservice schulbuchmanagerservice;
     private Buch buch;
+    boolean but=true;
     
     public BuchBean(){
        buch=new Buch();
+     
     }
 
     public List<Buch> getBlist() {
-        return blist;
+        return schulbuchmanagerservice.getBlist();
     }
 
     public void setBlist(List<Buch> blist) {
-        this.blist = blist;
+        this.schulbuchmanagerservice.setBlist(blist);
     }
 
     public Buch getBuch() {
@@ -42,26 +50,56 @@ public class BuchBean {
     public void setBuch(Buch buch) {
         this.buch = buch;
     }
-    
-    public void add(){
-        this.blist.add(buch);
-        buch=new Buch();
+
+    public boolean isBut() {
+        return but;
     }
-    /*
-    public Object save(Buch b){
-        
+
+    public void setBut(boolean but) {
+        this.but = but;
     }
-    */
     
-     public void assign(ValueChangeEvent ev)
+    public Object add(){
+        this.but=true;
+        this.schulbuchmanagerservice.add(buch);
+        this.buch=new Buch();
+        return "buecher.xhtml";
+    }
+    public Object delete(Buch b){
+         this.schulbuchmanagerservice.getBlist().remove(b);
+        return null;
+    }
+    public Object save(){
+         List<Buch> bl=schulbuchmanagerservice.getBlist();
+        this.but=true;
+         bl.remove(buch);
+        bl.add(new Buch(buch));
+        this.buch=new Buch();
+        return "buecher.xhtml";
+    }
+    public Object edit(Buch p)
     {
-        Boolean assign = (Boolean)ev.getNewValue();
-        
-        if(assign != null)
-        {
-            this.buch.setLehrerexample(assign);
-        }
-        
-        FacesContext.getCurrentInstance().renderResponse();
+        this.but=false;
+        this.buch=p;
+        return "buecherconfig.xhtml";
+    }    
+
+   public boolean opposit(){
+       if(this.but==true){
+        return false;
+       }
+       else
+           return true;
+       
+   }
+
+    public Schulbuchmanagerservice getSchulbuchmanagerservice() {
+        return schulbuchmanagerservice;
     }
+
+    public void setSchulbuchmanagerservice(Schulbuchmanagerservice schulbuchmanagerservice) {
+        this.schulbuchmanagerservice = schulbuchmanagerservice;
+    }
+   
+
 }

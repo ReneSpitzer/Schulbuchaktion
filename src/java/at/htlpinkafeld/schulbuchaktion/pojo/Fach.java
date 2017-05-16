@@ -5,27 +5,31 @@
  */
 package at.htlpinkafeld.schulbuchaktion.pojo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 /**
  *
  * @author Alex
  */
-public class Fach {
+public class Fach implements Identifiable{
     private int id_Fach;
     private String fachbez;
-       
-    public static final String[] INDEX_KEYS={"ID_FACH"};
-    private Indizes idx;
+    
+    private static List idxNames;
    
 
-    public Fach(int id_Fach, String fachbez) {
+    public Fach(int id_Fach, String fachbez){
         this.id_Fach = id_Fach;
         this.fachbez = fachbez;
         
-        idx= new Indizes();
-        idx.addIndex(this.INDEX_KEYS[0], id_Fach);
+        if(idxNames==null){
+            idxNames= new ArrayList();
+            idxNames.add("ID_FACH");
+        }
+        
     }
 
     public int getId_Fach() {
@@ -44,16 +48,15 @@ public class Fach {
         this.fachbez = fachbez;
     }
     
-    public Indizes getIndizes(){
-        return idx;
+    public List getIndizes(){
+        return idxNames;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 41 * hash + this.id_Fach;
-        hash = 41 * hash + Objects.hashCode(this.fachbez);
-        hash = 41 * hash + Objects.hashCode(this.idx);
+        hash = 23 * hash + this.id_Fach;
+        hash = 23 * hash + Objects.hashCode(this.fachbez);
         return hash;
     }
 
@@ -75,18 +78,37 @@ public class Fach {
         if (!Objects.equals(this.fachbez, other.fachbez)) {
             return false;
         }
-        if (!Objects.equals(this.idx, other.idx)) {
-            return false;
-        }
+
         return true;
     }
 
     @Override
     public String toString() {
-        return "Fach{" + "id_Fach=" + id_Fach + ", fachbez=" + fachbez + ", idx=" + idx + '}';
+        return   id_Fach +  fachbez ;
     }
 
+    @Override
+    public List getId(){
+        List retVal=new ArrayList();
+        
+        retVal.add(id_Fach);
+        
+        return retVal;
+    }
 
+    @Override
+    public void setId(int d) {
+        id_Fach=d;
+    }
+
+    @Override
+    public String getIndexQry() {
+        String retVal="";
+        
+        retVal+=idxNames.get(0)+"="+this.id_Fach;
+        
+        return retVal;
+    }
     
     
 }
